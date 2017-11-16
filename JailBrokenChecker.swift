@@ -1,6 +1,6 @@
 //
 //  JailBrokenChecker.swift
-//  SameSystem
+//  
 //
 //  Created by Amr Elghadban on 11/15/17.
 //  Copyright © 2017 Karmaadam . All rights reserved.
@@ -14,7 +14,7 @@ class JailBrokenChecker {
     /// getFirmware version
     ///
     /// - Returns: number of vesrion
-    func firmwareVersion() -> Float {
+    public static func firmwareVersion() -> Float {
         return Float((((UIDevice.current.systemVersion as NSString).substring(to: 3)) )) ?? 0.0
     }
     
@@ -22,7 +22,7 @@ class JailBrokenChecker {
     ///
     /// - Parameter isCloseApp: to kill and close the application
     /// - Returns: true if applications is valide
-    func isDeviceJailbroken(isCloseApp:Bool = true) -> Bool  {
+    public static func isDeviceJailbroken(_ isCloseApp:Bool = true) -> Bool  {
         #if TARGET_IPHONE_SIMULATOR || arch(i386) || arch(x86_64)
             
             debugPrint("Simulator")
@@ -33,36 +33,39 @@ class JailBrokenChecker {
             var isDirectory: ObjCBool = ObjCBool(false)
             //var isDirectory: Bool = false
             if FileManager.default.fileExists(atPath: "/Applications/Cydia.app")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("bla")\("ckra1n.a")\("pp")") || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("Fake")\("Carrier.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("Ic")\("y.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("Inte")\("lliScreen.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("MxT")\("ube.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("Roc")\("kApp.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("SBSet")\("ttings.a")\("pp")")
-                || FileManager.default.fileExists(atPath: "/\("App")\("lic")\("ati")\("ons/")\("Wint")\("erBoard.a")\("pp")")
-                
-                || FileManager.default.fileExists(atPath: "/\("pr")\("iva")\("te/v")\("ar/l")\("ib/a")\("pt/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("pr")\("iva")\("te/v")\("ar/l")\("ib/c")\("ydia/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("pr")\("iva")\("te/v")\("ar/mobile")\("Library/SBSettings")\("Themes/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("pr")\("iva")\("te/v")\("ar/t")\("mp/cyd")\("ia.log")")
-                || FileManager.default.fileExists(atPath: "/\("pr")\("iva")\("te/v")\("ar/s")\("tash/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("us")\("r/l")\("ibe")\("xe")\("c/cy")\("dia/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("us")\("r/b")\("in")\("s")\("shd")")
-                || FileManager.default.fileExists(atPath: "/\("us")\("r/sb")\("in")\("s")\("shd")")
-                || FileManager.default.fileExists(atPath: "/\("us")\("r/l")\("ibe")\("xe")\("c/cy")\("dia/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("us")\("r/l")\("ibe")\("xe")\("c/sftp-")\("server")")
-                || FileManager.default.fileExists(atPath: "/\("/Syste")\("tem/Lib")\("rary/Lau")\("nchDae")\("mons/com.ike")\("y.bbot.plist")")
-                || FileManager.default.fileExists(atPath: "/\("/Sy")\("stem/Lib")\("rary/Laun")\("chDae")\("mons/com.saur")\("ik.Cy")\("@dia.Star")\("tup.plist")")
-                || FileManager.default.fileExists(atPath: "/\("/Libr")\("ary/Mo")\("bileSubstra")\("te/MobileSubs")\("trate.dylib")")
-                || FileManager.default.fileExists(atPath: "/\("/va")\("r/c")\("ach")\("e/a")\("pt/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("/va")\("r/l")\("ib")\("/apt/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("/va")\("r/l")\("ib/c")\("ydia/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("/va")\("r/l")\("og/s")\("yslog")")
-                || FileManager.default.fileExists(atPath: "/\("/bi")\("n/b")\("ash")")
-                || FileManager.default.fileExists(atPath: "/\("/b")\("in/")\("sh")")
-                || FileManager.default.fileExists(atPath: "/\("/et")\("c/a")\("pt/")", isDirectory: &isDirectory)
-                || FileManager.default.fileExists(atPath: "/\("/etc/s")\("sh/s")\("shd_config")")
-                || FileManager.default.fileExists(atPath: "/\("/us")\("r/li")\("bexe")\("c/ssh-k")\("eysign")"){
+                || FileManager.default.fileExists(atPath: "/Applications/blackra1n.app")
+                || FileManager.default.fileExists(atPath: "/Applications/FakeCarrier.app")
+                || FileManager.default.fileExists(atPath: "/Applications/Icy.app")
+                || FileManager.default.fileExists(atPath: "/Applications/IntelliScreen.app")
+                || FileManager.default.fileExists(atPath: "/Applications/MxTube.app")
+                || FileManager.default.fileExists(atPath: "/Applications/RockApp.app")
+                || FileManager.default.fileExists(atPath: "/Applications/SBSetttings.app")
+                || FileManager.default.fileExists(atPath: "/Applications/WinterBoard.app")
+                || FileManager.default.fileExists(atPath: "/private/var/lib/apt/)", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/private/var/lib/cydia/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/private/var/mobileLibrary/SBSettingsThemes/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/private/var/tmp/cydia.log")
+                || FileManager.default.fileExists(atPath: "/private/var/stash/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/usr/libexe\("c/cy")\("dia/")", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/usr/binsshd")
+                || FileManager.default.fileExists(atPath: "/usr/sbinsshd")
+                || FileManager.default.fileExists(atPath: "/usr/sbin/sshd")
+                || FileManager.default.fileExists(atPath: "/usr/bin/ssh")
+                || FileManager.default.fileExists(atPath: "/usr/libexec/cydia/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/usr/libexec/sftp-server")
+                || FileManager.default.fileExists(atPath: "/usr/libexec/ssh-keysign")
+                || FileManager.default.fileExists(atPath: "/Systetem/Library/LaunchDaemons/com.ikey.bbot.plist")
+                || FileManager.default.fileExists(atPath: "/System/Library/LaunchDaemons/com.saurik.Cy@dia.Startup.plist")
+                || FileManager.default.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib")
+                || FileManager.default.fileExists(atPath: "/var/cache/apt/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/var/libapt/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/var/lib/cydia/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/var/log/syslog")
+                || FileManager.default.fileExists(atPath: "/bin/bash")
+                || FileManager.default.fileExists(atPath: "/bin/sh")
+                || FileManager.default.fileExists(atPath: "/etc/apt/", isDirectory: &isDirectory)
+                || FileManager.default.fileExists(atPath: "/etc/apt")
+                || FileManager.default.fileExists(atPath: "/etc/ssh/sshd_config"){
                 
                 debugPrint("Jailbroken Device")
                 
@@ -113,7 +116,7 @@ class JailBrokenChecker {
     ///
     /// - Parameter isCloseApp: to kill and close the application
     /// - Returns: true if applications is valide
-    func isAppStoreVersion(isCloseApp:Bool = false) -> Bool {
+    public static func isAppStoreVersion(isCloseApp:Bool = false) -> Bool {
         #if TARGET_IPHONE_SIMULATOR || arch(i386) || arch(x86_64)
             return false
         #else
@@ -132,27 +135,20 @@ class JailBrokenChecker {
     }
     
     
-    public static func jailbroken(application: UIApplication) -> Bool {
+    fileprivate func jailbroken(application: UIApplication) -> Bool {
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return isJailbroken() }
         return application.canOpenURL(cydiaUrlScheme as URL) || isJailbroken()
     }
     
     
     
-    static func isJailbroken() -> Bool {
+   fileprivate func isJailbroken() -> Bool {
         #if TARGET_IPHONE_SIMULATOR
             return false
         #else
             
             let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: "/Applications/Cydia.app") ||
-                fileManager.fileExists(atPath: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
-                fileManager.fileExists(atPath: "/bin/bash") ||
-                fileManager.fileExists(atPath: "/usr/sbin/sshd") ||
-                fileManager.fileExists(atPath: "/etc/apt") ||
-                fileManager.fileExists(atPath: "/usr/bin/ssh") {
-                return true
-            }
+           
             
             if canOpen(path: "/Applications/Cydia.app") ||
                 canOpen(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
@@ -174,7 +170,7 @@ class JailBrokenChecker {
         #endif
     }
     
-    static func canOpen(path: String) -> Bool {
+    fileprivate func canOpen(path: String) -> Bool {
         let file = fopen(path, "r")
         guard file != nil else { return false }
         fclose(file)
