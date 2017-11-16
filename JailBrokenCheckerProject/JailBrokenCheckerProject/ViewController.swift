@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         
         
-        let isClearDevice = JailBrokenChecker.isDeviceJailbroken()
+        let isClearDevice = JailBrokenChecker.isDeviceJailbroken(true)
         
         var msg :String
         if !isClearDevice {
@@ -58,13 +58,13 @@ class ViewController: UIViewController {
     
     @IBAction func checkBtnPressed(_ sender: Any) {
         
-        let isClearDevice = JailBrokenChecker.isDeviceJailbroken(true)
+        let isClearDevice = JailBrokenChecker.isDeviceJailbroken()
         
         var msg :String
         if !isClearDevice {
             msg = "Clean Device"
         }else{
-            msg = "Jail broken Device"
+            msg = "Your Device is jailbroken, Application will be Exit"
         }
         
         let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
@@ -74,7 +74,9 @@ class ViewController: UIViewController {
             switch action.style{
             case .default:
                 print("default")
-                
+                //Comment: to terminate app, do not use exit(0) bc that is logged as a crash.
+                UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
+            
             case .cancel:
                 print("cancel")
                 
