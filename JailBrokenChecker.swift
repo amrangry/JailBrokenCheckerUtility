@@ -13,7 +13,7 @@ class JailBrokenChecker {
     
     /// getFirmware version
     ///
-    /// - Returns: number of vesrion
+    /// - Returns: number of version
     public static func firmwareVersion() -> Float {
         return Float((((UIDevice.current.systemVersion as NSString).substring(to: 3)) )) ?? 0.0
     }
@@ -21,7 +21,7 @@ class JailBrokenChecker {
     /// will check for most comman path for jailbroken devices
     ///
     /// - Parameter isCloseApp: to kill and close the application
-    /// - Returns: true if applications is valide
+    /// - Returns: true if applications is validated
     public static func isDeviceJailbroken(_ isCloseApp:Bool = true) -> Bool  {
         #if TARGET_IPHONE_SIMULATOR || arch(i386) || arch(x86_64)
             
@@ -75,9 +75,7 @@ class JailBrokenChecker {
                 return true
                 
             }
-            
-            
-            
+        
             //Try to write file in private
             let error: Error?
             try? "Jailbreak test string".write(toFile: "/private/test_jb.txt", atomically: true, encoding: .utf8)
@@ -107,22 +105,20 @@ class JailBrokenChecker {
             
             return isAppStoreVersion(isCloseApp)
             
-            
         #endif
         
     }
     
-    /// detect if the application is installed form appstore
+    /// detect if the application is installed from AppStore
     ///
     /// - Parameter isCloseApp: to kill and close the application
-    /// - Returns: true if applications is valide
+    /// - Returns: true if applications is validated
     public static func isAppStoreVersion(isCloseApp:Bool = false) -> Bool {
         #if TARGET_IPHONE_SIMULATOR || arch(i386) || arch(x86_64)
             return false
         #else
             let provisionPath: String? = Bundle.main.path(forResource: "embedded", ofType: "mobileprovision")
             if nil == provisionPath || 0 == (provisionPath?.count ?? 0) {
-                
                 debugPrint("Jailbroken Device")
                 if isCloseApp{
                     exit(0)
@@ -134,22 +130,17 @@ class JailBrokenChecker {
         #endif
     }
     
-    
     fileprivate func jailbroken(application: UIApplication) -> Bool {
         guard let cydiaUrlScheme = NSURL(string: "cydia://package/com.example.package") else { return isJailbroken() }
         return application.canOpenURL(cydiaUrlScheme as URL) || isJailbroken()
     }
-    
-    
-    
-   fileprivate func isJailbroken() -> Bool {
+
+    fileprivate func isJailbroken() -> Bool {
         #if TARGET_IPHONE_SIMULATOR
             return false
         #else
-            
             let fileManager = FileManager.default
-           
-            
+        
             if canOpen(path: "/Applications/Cydia.app") ||
                 canOpen(path: "/Library/MobileSubstrate/MobileSubstrate.dylib") ||
                 canOpen(path: "/bin/bash") ||
@@ -176,10 +167,5 @@ class JailBrokenChecker {
         fclose(file)
         return true
     }
-    
-    
-    
-    
 
-    
 }
