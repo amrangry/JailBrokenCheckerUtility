@@ -22,9 +22,6 @@ class ViewController: UIViewController {
 
     @IBAction func checkAndCloseBtnPressed(_ sender: Any) {
         
-        
-        
-        
         let isClearDevice = JailBrokenChecker.isDeviceJailbroken(true)
         
         var msg :String
@@ -35,7 +32,6 @@ class ViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
             switch action.style{
@@ -51,9 +47,6 @@ class ViewController: UIViewController {
             }
         }))
         self.present(alert, animated: true, completion: nil)
-        
-        
-       
     }
     
     @IBAction func checkBtnPressed(_ sender: Any) {
@@ -68,7 +61,6 @@ class ViewController: UIViewController {
         }
         
         let alert = UIAlertController(title: "Alert", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        
         
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
             switch action.style{
@@ -86,7 +78,6 @@ class ViewController: UIViewController {
             }
         }))
         self.present(alert, animated: true, completion: nil)
-        
     }
-   }
-
+    
+ }
