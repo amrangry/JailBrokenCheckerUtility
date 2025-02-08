@@ -55,7 +55,7 @@ Let’s keep learning and building, one step at a time.
 <details>
 <summary><strong>MIT License</strong></summary>
 <p>
-iStarWars is distributed under the MIT License.  
+JailBrokenCheckerUtility is distributed under the MIT License.  
 For more information, see the <a href="https://github.com/amrangry/JailBrokenCheckerUtility
 /blob/master/LICENSE" target="_blank">LICENSE</a> file.  
 
